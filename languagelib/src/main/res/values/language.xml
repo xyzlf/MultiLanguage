@@ -1,0 +1,37 @@
+<resources>
+    <string name="language_zh_cn">中文 (简体)</string>
+    <string name="language_zh_tw">中文 (繁體)</string>
+    <string name="language_ja">日本語</string>
+    <string name="language_ar">العربية</string>
+    <string name="language_de">Deutsch</string>
+    <string name="language_en">English</string>
+    <string name="language_es">Español</string>
+    <string name="language_fr">Français</string>
+    <string name="language_id">Bahasa Indonesia</string>
+    <string name="language_it">Italiano</string>
+    <string name="language_pt_br">Português (Brasil)</string>
+    <string name="language_ms">Bahasa Melayu</string>
+    <string name="language_uk">Українська</string>
+    <string name="language_th">ไทย</string>
+    <string name="language_tr">Türkçe</string>
+    <string name="language_el">Eλληνικά</string>
+    <string name="language_ru">Pусский</string>
+    <string name="language_hr">Hrvatski</string>
+    <string name="language_nl">Nederlands</string>
+    <string name="language_vi">Tiếng Việt</string>
+    <string name="language_ko">한국어</string>
+
+    <string name="language_hu">Magyar</string>
+    <string name="language_pt">Português</string>
+    <string name="language_ro">Română</string>
+    <string name="language_sk">Slovenčina</string>
+    <string name="language_he">עברית</string>
+    <string name="language_bg">български</string>
+    <string name="language_nb">Norsk bokmål</string>
+    <string name="language_pl">Polski</string>
+    <string name="language_es_us">Español (Estados Unidos)</string>
+    <string name="language_cs">Čeština</string>
+    <string name="language_hi">हिंदी</string>
+    <string name="language_sr">Srpski</string>
+
+</resources>
