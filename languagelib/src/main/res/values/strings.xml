@@ -1,4 +1,3 @@
 <resources>
-    <string name="app_name">LanguageLib</string>
     <string name="language_default">Auto-detection</string>
 </resources>

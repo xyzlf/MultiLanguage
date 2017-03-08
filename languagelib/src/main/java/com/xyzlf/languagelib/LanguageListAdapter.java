@@ -1,7 +1,6 @@
 package com.xyzlf.languagelib;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,28 +14,16 @@ public class LanguageListAdapter extends BaseAdapter {
 
     private Context mContext;
     private List<LanguageCountry> mLanguageLists = null;
-    private String mCurrentLang = null;
-    private String mCurrentCoun = null;
+    private String mCurrentLang;
+    private String mCurrentCoun;
 
     public LanguageListAdapter(Context context, List<LanguageCountry> languageList) {
         mContext = context;
         mLanguageLists = languageList;
 
-        init(context);
-    }
-
-    private void init(Context context) {
-        Configuration config;
-        try {
-            config = context.getResources().getConfiguration();
-            if (config != null && config.locale != null) {
-                mCurrentLang = config.locale.getLanguage();
-            }
-            if (config != null && config.locale != null) {
-                mCurrentCoun = config.locale.getCountry();
-            }
-        } catch (Throwable e) {
-        }
+        LanguageConfig config = LanguageConfig.newInstance(context);
+        mCurrentLang = config.getLanguageValue();
+        mCurrentCoun = config.getCountryNameValue();
     }
 
     public void setCurrentLang(String currentLang) {
@@ -64,7 +51,7 @@ public class LanguageListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder = null;
+        ViewHolder holder;
         if (null == convertView) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.language_list_item, null);
             holder = new ViewHolder();
@@ -104,9 +91,9 @@ public class LanguageListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    class ViewHolder {
-        public TextView mLanguageTv;
-        public ImageView mImageIcon;
+    private class ViewHolder {
+        TextView mLanguageTv;
+        ImageView mImageIcon;
     }
 
 }

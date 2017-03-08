@@ -66,7 +66,7 @@ public class LanguageCountry {
         matchLanguageName();
     }
 
-    public void matchLanguageName() {
+    private void matchLanguageName() {
         mLanguageName = getStringOfLanguageName(R.string.language_en, "English");
         if (!TextUtils.isEmpty(mLanguage)) {
             if (mLanguage.equalsIgnoreCase(LANGUAGE_OPTION_DE)) {

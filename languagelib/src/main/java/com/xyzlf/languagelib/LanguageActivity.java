@@ -7,10 +7,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,6 @@ public class LanguageActivity extends AppCompatActivity implements OnItemClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.setContentView(R.layout.language_activity_language);
 
         initViews();
@@ -43,7 +43,7 @@ public class LanguageActivity extends AppCompatActivity implements OnItemClickLi
     private void initLanguageData() {
         mLanguageList = new ArrayList<>();
         // /<< 初始化需要的语言，需要添加更多语言在LanguageCountry类中加入
-        mLanguageList.add(new LanguageCountry(this, LanguageCountry.COUNTRY_OPTION_DEFAULT));
+        mLanguageList.add(new LanguageCountry(this, LanguageCountry.LANGUAGE_OPTION_DEFAULT, LanguageCountry.COUNTRY_OPTION_DEFAULT));
 
         mLanguageList.add(new LanguageCountry(this, LanguageCountry.LANGUAGE_OPTION_EN));
         mLanguageList.add(new LanguageCountry(this, LanguageCountry.LANGUAGE_OPTION_RU));
@@ -72,26 +72,27 @@ public class LanguageActivity extends AppCompatActivity implements OnItemClickLi
         mLanguageList.add(new LanguageCountry(this, LanguageCountry.LANGUAGE_OPTION_ZH, LanguageCountry.COUNTRY_OPTION_CN));
         mLanguageList.add(new LanguageCountry(this, LanguageCountry.LANGUAGE_OPTION_ZH, LanguageCountry.COUNTRY_OPTION_TW));
 
-        if (null != mLanguageList) {
-            mAdapter = new LanguageListAdapter(this, mLanguageList);
-            mLanguageListView.setAdapter(mAdapter);
-        }
+        mAdapter = new LanguageListAdapter(this, mLanguageList);
+        mLanguageListView.setAdapter(mAdapter);
     }
 
     private void selectLanguage(LanguageCountry item, boolean isAutoSet) {
+        LanguageConfig config = LanguageConfig.newInstance(this);
         if (isAutoSet) {
             String langStr = Locale.getDefault().getLanguage();
             String countryStr = Locale.getDefault().getCountry();
             item = new LanguageCountry(this, langStr, countryStr);
-//			GlobalPref.getIns().setLanguageValue("");
-//			GlobalPref.getIns().setCountryNameValue("");
-//			GlobalPref.getIns().setAutoSetLanguage(true);
+
+            config.setLanguageValue(null);
+            config.setCountryNameValue(null);
         } else {
-//			GlobalPref.getIns().setAutoSetLanguage(false);
-//			Commons.setLanguageSelected(item);
+            if (null != item) {
+                config.setLanguageValue(item.getLanguage());
+                config.setCountryNameValue(item.getCountry());
+            }
         }
         setLanguage(item, this);
-
+        EventBus.getDefault().post(LanguageConstant.EVENT_REFRESH_LANGUAGE);
         LanguageActivity.this.finish();
     }
 
@@ -133,9 +134,9 @@ public class LanguageActivity extends AppCompatActivity implements OnItemClickLi
                 isAuto = true;
             }
             if (isAuto) {
-                selectLanguage(null, isAuto);
+                selectLanguage(null, true);
             } else {
-                selectLanguage(item, isAuto);
+                selectLanguage(item, false);
             }
         }
     }

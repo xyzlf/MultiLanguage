@@ -3,4 +3,14 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--点击遮罩效果-->
+    <color name="color_click">#19000000</color>
+
+    <color name="white">#ffffff</color>
+    <color name="color_e6e6e6">#e6e6e6</color>
+    <color name="color_f3f3f3">#f3f3f3</color>
+    <color name="color_454a4d">#454a4d</color>
+    <color name="color_999999">#999999</color>
+
 </resources>

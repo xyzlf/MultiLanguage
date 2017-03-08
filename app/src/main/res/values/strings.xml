@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">MultiLanguage</string>
+
+    <string name="language_setting">Setting language</string>
+
+    <string name="device_info">Device information</string>
+    <string name="device_model_number">Model number</string>
+    <string name="device_android_ver">Android version</string>
+    <string name="device_os_build">Build number</string>
+    <string name="device_os_cpu">Processor</string>
+
 </resources>
