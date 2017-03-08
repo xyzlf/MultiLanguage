@@ -2,9 +2,7 @@
 Android多语言更换。
 
 # 效果图
-<img src="language_1.png"/>
-
-<img src="language_2.png"/>
+<img src="language_1.png"/><img src="language_2.png"/>
 
 <img src="language.gif" />
 
